@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const logger = require("./middlewares/logger");
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4000; 
 let multer = require('multer');
 
 
