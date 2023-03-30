@@ -1,22 +1,25 @@
+require("dotenv").config();
 const express = require("express");
 const logger = require("./middlewares/logger");
 const port = process.env.PORT || 4000;
+let multer = require('multer');
 
-require("dotenv").config();
+
 require("./config/connection");
 
-const corsOptions = require("./config/corsoption");
+const corsConfig = require("./config/corsConfig");
 const app = express();
 
 app.use(logger);
-app.use(corsOptions);
-app.use(express.json());
+app.use(corsConfig);
+app.use(express.json({limit: '50mb'}));
 
 const userRoute = require("./routes/user.route");
 const facilityRoute = require("./routes/facility.route");
 
-app.use(userRoute);
-app.use(facilityRoute);
+//app.use(multer({ dest: './uploads/' }));
+app.use('/v1/',userRoute);
+app.use('/v1/',facilityRoute);
 
 app.listen(port, () => {
   console.log(`server is listening on port ${port} `);
