@@ -1,5 +1,4 @@
 const {
-  dbError,
   facilityFound,
   facilityNotFound,
   facilityAdded,
@@ -21,7 +20,7 @@ exports.getFacility = async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(500).json(dbError, error);
+    next(error);
   }
 };
 
@@ -34,9 +33,6 @@ exports.addFacility = async (req, res) => {
       facility,
     });
   } catch (error) {
-    return res.status(500).json({
-      message: dbError,
-      error: error,
-    });
+    next(error);
   }
 };

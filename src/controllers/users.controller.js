@@ -3,17 +3,15 @@ const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 
 const {
-  userNotRegistered,
   userRegistered,
   loginSuccess,
   invalidPass,
-  loginFailed,
   invalidUser,
   userFound,
   userNotFound,
 } = require("../constants/error-message");
 
-exports.registerUser = async (req, res) => {
+exports.registerUser = async (req, res, next) => {
   const newUser = User.build({
     ...req.body,
     userpass: CryptoJS.AES.encrypt(
@@ -28,14 +26,11 @@ exports.registerUser = async (req, res) => {
       user,
     });
   } catch (error) {
-    return res.status(500).json({
-      message: userNotRegistered,
-      error: error,
-    });
+    next(error);
   }
 };
 
-exports.login = async (req, res) => {
+exports.loginUser = async (req, res, next) => {
   const { email, userpass } = req.body;
   try {
     const user = await User.findOne({
@@ -71,25 +66,22 @@ exports.login = async (req, res) => {
       message: invalidUser,
     });
   } catch (error) {
-    return res.status(500).json({
-      message: loginFailed,
-      error: error,
-    });
+    next(error);
   }
 };
 
-exports.users = async (req, res) => {
+exports.getUsers = async (req, res, next) => {
   try {
     const users = await User.findAll({});
-    res.status(200).json({
+    if (users.length === 0) {
+      return res.status(404).json({ message: userNotFound });
+    }
+    return res.status(200).json({
       message: userFound,
       records: users.length,
       users,
     });
   } catch (error) {
-    res.status(500).json({
-      message: userNotFound,
-      error: error,
-    });
+    next(error);
   }
 };

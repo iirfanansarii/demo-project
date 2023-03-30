@@ -1,13 +1,15 @@
+const router = require("express").Router();
+const registerUserValidation = require("../validations/create-user-validation/create-user-validation");
+const loginUserValidation = require("../validations/login-user-validation/login-user-validation");
+
 const {
   registerUser,
-  login,
-  users,
+  loginUser,
+  getUsers,
 } = require("../controllers/users.controller");
 
-const router = require("express").Router();
-
-router.post("/user/register", registerUser);
-router.post("/user/login", login);
-router.get("/users", users);
+router.post("/user/register", registerUserValidation, registerUser);
+router.post("/user/login", loginUserValidation, loginUser);
+router.get("/users", getUsers);
 
 module.exports = router;
