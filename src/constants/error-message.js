@@ -1,0 +1,16 @@
+module.exports = {
+  dbError: "Database Error",
+  userNotRegistered: "User registeration failed",
+  userRegistered: "User registered successfully",
+  invalidAPI: "Invalid api endpoint",
+  loginSuccess: "Logged in successfully",
+  loginFailed: "Login Failed",
+  invalidPass: "Invalid password",
+  invalidUser: "Invalid user",
+  tokenNotFound: "Token not found",
+  userFound: "Users list fetch successfully",
+  userNotFound: "No user found",
+  facilityFound: "Facilities list fetched successfully",
+  facilityNotFound: "No facility found",
+  facilityAdded: "Faciity added successfully",
+};
