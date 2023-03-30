@@ -13,4 +13,5 @@ module.exports = {
   facilityFound: "Facilities list fetched successfully",
   facilityNotFound: "No facility found",
   facilityAdded: "Faciity added successfully",
+  fileUploaded: "File uploaded successfully",
 };

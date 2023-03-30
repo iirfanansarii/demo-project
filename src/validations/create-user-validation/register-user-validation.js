@@ -1,4 +1,4 @@
-const { registerUser } = require("./create-user-validation-schema");
+const { registerUser } = require("./register-user-validation-schema");
 
 const registerUserValidation = async (req, res, next) => {
   const value = await registerUser.validate(req.body);
@@ -7,7 +7,6 @@ const registerUserValidation = async (req, res, next) => {
       message: value.error.details[0].message,
     });
   }
-  // next(value.error);
 };
 
 module.exports = registerUserValidation;

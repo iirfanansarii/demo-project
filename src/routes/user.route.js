@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const registerUserValidation = require("../validations/create-user-validation/create-user-validation");
+const registerUserValidation = require("../validations/create-user-validation/register-user-validation");
 const loginUserValidation = require("../validations/login-user-validation/login-user-validation");
 
 const {

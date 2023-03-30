@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+const sequelize = require("../config/dbConfig");
 
 const User = sequelize.define(
   "Users",
@@ -10,6 +10,7 @@ const User = sequelize.define(
     },
     email: {
       type: DataTypes.STRING,
+      unique: true,
     },
     userpass: {
       type: DataTypes.STRING,
