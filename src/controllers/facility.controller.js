@@ -5,7 +5,7 @@ const {
 } = require("../constants/error-message");
 const Facility = require("../models/facilty.model");
 
-exports.getFacility = async (req, res) => {
+exports.getFacility = async (req, res ,next) => {
   try {
     const facilities = await Facility.findAll({});
     if (facilities.length > 0) {
@@ -24,7 +24,7 @@ exports.getFacility = async (req, res) => {
   }
 };
 
-exports.addFacility = async (req, res) => {
+exports.addFacility = async (req, res , next) => {
   const newFacility = Facility.build(req.body);
   try {
     const facility = await newFacility.save();
