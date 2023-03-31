@@ -12,6 +12,7 @@ const {
 } = require("../constants/error-message");
 
 exports.registerUser = async (req, res, next) => {
+  try {
   const newUser = User.build({
     ...req.body,
     userpass: CryptoJS.AES.encrypt(
@@ -19,7 +20,7 @@ exports.registerUser = async (req, res, next) => {
       process.env.PASS_SECRET_KEY
     ).toString(),
   });
-  try {
+  
     const user = await newUser.save();
     return res.status(201).json({
       message: userRegistered,

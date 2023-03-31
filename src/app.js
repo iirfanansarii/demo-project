@@ -10,7 +10,6 @@ const port = process.env.PORT || 4000;
 const app = express();
 
 app.use(logger);
-app.use(errorHandler);
 app.use(corsConfig);
 app.use(express.json({ limit: "50mb" }));
 
@@ -27,6 +26,8 @@ app.use("/v1", uploadfileRoute);
 app.use("/*", (req, res) => {
   res.status(404).json({ message: invalidAPI });
 });
+
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`server is listening on port ${port} `);
