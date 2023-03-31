@@ -46,7 +46,7 @@ exports.loginUser = async (req, res, next) => {
       const originalText = bytes.toString(CryptoJS.enc.Utf8);
       const accessToken = jwt.sign(
         {
-          id: user._id,
+          id: user.id,
           isAdmin: user.isAdmin,
         },
         process.env.JWT_SECRET_KEY,

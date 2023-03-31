@@ -19,8 +19,8 @@ const userRoute = require("./routes/user.route");
 const uploadfileRoute = require("./routes/uploadfile.route");
 const facilityRoute = require("./routes/facility.route");
 
-app.use("/v1/", userRoute);
-app.use("/v1/", facilityRoute);
+app.use("/v1", userRoute);
+app.use("/v1", facilityRoute);
 app.use("/v1", uploadfileRoute);
 
 /* Invalid Endpoint */

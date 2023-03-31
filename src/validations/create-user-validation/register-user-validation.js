@@ -7,6 +7,8 @@ const registerUserValidation = async (req, res, next) => {
       message: value.error.details[0].message,
     });
   }
+  next();
+
 };
 
 module.exports = registerUserValidation;
